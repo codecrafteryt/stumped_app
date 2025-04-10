@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
         timer.cancel();
         Future.delayed(const Duration(milliseconds: 200), () {
           if (mounted) {
-            Get.to(() => HomeScreen());
+            Get.to(() => Menu());
           }
         });
       }
