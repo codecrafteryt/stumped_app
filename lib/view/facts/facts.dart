@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:stumped_app/controller/facts_controller.dart';
 import 'package:stumped_app/utils/extensions/extentions.dart';
-import 'package:stumped_app/utils/values/my_color.dart';
-import 'package:stumped_app/utils/values/style.dart';
 import 'package:stumped_app/view/widgets/custom_button.dart';
-
 import '../widgets/custom_appbar.dart';
 
 class Facts extends StatelessWidget {
@@ -36,7 +32,7 @@ class Facts extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               CustomAppBar(
-                title: 'Facts',
+                title: 'Facts:',
               ),
               const SizedBox(height: 60),
               Image.asset(

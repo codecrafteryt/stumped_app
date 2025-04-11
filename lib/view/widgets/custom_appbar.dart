@@ -1,57 +1,75 @@
-/*
-        ---------------------------------------
-        Project: Bat and Brain Game Mobile Application
-        Date: April 4, 2024
-        Author: Ameer from Pakistan
-        ---------------------------------------
-        Description:  Custom App Bar
-      */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../utils/values/my_color.dart';
-import '../../utils/values/style.dart' show kSize14DarkW400Text;
+import 'package:stumped_app/view/menu/menu.dart';
+import 'package:stumped_app/view/widgets/volume_button.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final bool showBackButton;
-  final bool settingButton;
 
   const CustomAppBar({
-    super.key,
-    this.title = "",
-    this.showBackButton = true,
-    this.settingButton = true,
-  });
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        showBackButton
-            ? GestureDetector(
-          onTap: (){
-            Get.back();
-          },
-          child: BackButton()
-        )
-            : SizedBox(width: 72.w, height: 72.h),
-        Text(
-          title,
-          style: kSize14DarkW400Text.copyWith(
-              fontSize: 80,
-              color: MyColors.textColor
-          ),
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+      ),
+      padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+      child: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Back button
+            GestureDetector(
+              onTap: () {
+                if (Get.isOverlaysOpen) {
+                  Get.back();
+                } else {
+                  Get.offAll(() => Menu());
+                }
+                debugPrint("1212");
+              },
+              child: Container(
+                width: 61.w,
+                height: 61.h,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF51636E).withOpacity(0.8),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: const Color.fromRGBO(103, 118, 86, 1), // ← your rgba color
+                    width: 2, // adjust as needed
+                  ),
+                ),
+                child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 40.r,
+                  ),
+              ),
+            ),
+            // Title
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 55.sp,
+                fontFamily: 'Times New Roman',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            // Sound toggle button
+            VolumeButton(),
+          ],
         ),
-        settingButton?
-        GestureDetector(
-          onTap: (){
-            //Get.to(() => SettingsScreen(),);
-          },
-          child: Text("data")
-        ): SizedBox(width: 72.w, height: 72.h),
-      ],
+      ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 8.0);
 }

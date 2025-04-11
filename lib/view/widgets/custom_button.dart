@@ -43,7 +43,7 @@ class CustomButton extends StatelessWidget {
             textAlign: TextAlign.center,
             text,
             style: kSize14DarkW400Text.copyWith(
-              fontSize: 76,
+              fontSize: 76.sp,
               color: MyColors.white
             )
           ),

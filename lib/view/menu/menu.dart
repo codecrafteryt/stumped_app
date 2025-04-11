@@ -3,7 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:stumped_app/controller/facts_controller.dart';
 import 'package:stumped_app/utils/extensions/extentions.dart';
+import 'package:stumped_app/view/facts/fact1_screen.dart';
+import 'package:stumped_app/view/players/player1_screen.dart';
+import 'package:stumped_app/view/quiz/quiz_screen.dart';
 import 'package:stumped_app/view/widgets/custom_button.dart';
+import 'package:stumped_app/view/widgets/volume_button.dart';
 import '../facts/facts.dart';
 
 class Menu extends StatelessWidget {
@@ -31,44 +35,26 @@ class Menu extends StatelessWidget {
                 height: 220.h,
               ),
               18.sbh,
-
-              GestureDetector(
-                onTap: controller.toggleSound,
-                child: Obx(() => Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.7),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    controller.isSoundOn.value ? Icons.volume_up : Icons.volume_off,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                )),
-              ),
-
+              VolumeButton(),
               40.sbh,
-
               CustomButton(
                 text: "Quiz",
                 onPressed: () {
-                  // Navigate to Quiz screen
+                  Get.off(() => QuizScreen());
                 },
               ),
               30.sbh,
               CustomButton(
                 text: "Players",
                 onPressed: () {
-                  // Navigate to Players screen
+                  Get.off(() => Player1Screen());
                 },
               ),
               30.sbh,
               CustomButton(
                 text: "Facts",
                 onPressed: () {
-                  Get.to(() => Facts());
+                  Get.off(() => Fact1Screen());
                 },
               ),
             ],

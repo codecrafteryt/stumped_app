@@ -1,4 +1,4 @@
-package com.example.stumped_app
+package com.quplfacts.stumped
 
 import io.flutter.embedding.android.FlutterActivity
 
